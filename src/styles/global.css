@@ -172,6 +172,13 @@ form {
 	height: 50%;
 }
 
+.input-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4em;
+	color: #FFFFFF;
+}
+
 textarea {
 	border-radius: 10px;
 	border: none;
@@ -192,8 +199,8 @@ button {
 	width: min-content;
 	padding: 0.8em;
 	border: 2px solid black;
-	background: transparent;
-	color: rgb(var(--gray));
+	background: #000000;
+	color: var(--accent);
 	font-weight: bold;
 }
 
@@ -267,4 +274,8 @@ hr, .content-wrapper hr {
 
 .formulario {
     background-image: url("/img/background.jpg");
+}
+
+video {
+	border-radius: 20px;
 }

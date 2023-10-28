@@ -5,11 +5,10 @@ import Webcam from "react-webcam";
 const videoConstraints = {
 	width: 400,
   	height: 400,
-  	facingMode: "user",
+  	facingMode: "environment",
 };
 
-
-function Cam(props:any, ref) { 
+function Cam({loading}, ref) { 
 	return (
 	  <>
 		<Webcam
@@ -20,9 +19,9 @@ function Cam(props:any, ref) {
 		  width={400}
 		  videoConstraints={videoConstraints}
 		/>
-		{ props.loading ? 
-			(<button type="submit" disabled>Generando Recetas...</button>) :
-			(<button type="submit">Escanear</button>)
+		{ loading ? 
+			(<button type="submit" className="scan" disabled>Generando Recetas...</button>) :
+			(<button type="submit" className="scan">Escanear</button>)
 		}
 	  </>
 	);

@@ -4,7 +4,8 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
- @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 :root {
 	--accent: #EFB902;
@@ -18,22 +19,8 @@
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
 }
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
 body {
-	font-family: 'Atkinson', 'Roboto', sans-serif;
+	font-family: 'Poppins', 'Roboto', sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -62,10 +49,10 @@ h6 {
 }
 h1 {
 	color: var(--title);
-	font-size: 3.052em;
+	font-size: 2.6em;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 2.3em;
 }
 h3 {
 	font-size: 1.953em;
@@ -172,6 +159,11 @@ form {
 	height: 50%;
 }
 
+.scan {
+	padding: 0.2em;
+	font-size: 1.2em;
+}
+
 .input-field {
 	display: flex;
 	flex-direction: column;
@@ -260,9 +252,10 @@ hr, .content-wrapper hr {
 .error {
 	border-radius: 5px;
 	padding: 0.5em;
-	background: #ff000042;
+	background: #ff000072;
 	display: flex;
 	justify-content: space-between;
+	color: white;
 }
 
 .error button {
@@ -278,4 +271,24 @@ hr, .content-wrapper hr {
 
 video {
 	border-radius: 20px;
+}
+
+.recipe-gen {
+	width: max-content;
+	padding: 0.2em;
+	font-size: 1.2em;
+}
+
+.recipe-input {
+	background-color: #d8d7d7;
+	border-radius: 10px;
+	padding: 0.5em;
+	border: none;
+	width: 50%;
+}
+
+@media (max-width: 720px) {
+	.recipe-input {
+		width: 90%;
+	}
 }

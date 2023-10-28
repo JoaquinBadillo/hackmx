@@ -5,7 +5,7 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<div class="internal-links">
-			<HeaderLink href="/">Modernario</HeaderLink>
+			<img src="/logo.svg" class="logo" alt="El Modernario" />
 		</div>
 	</nav>
 </header>
@@ -47,6 +47,23 @@ import HeaderLink from './HeaderLink.astro';
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
+		}
+	}
+	.internal-links {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 0.2em;
+	}
+	.logo {
+		min-width: 200px;
+		width: 30%;
+		height: auto;
+	}
+	@media (max-width: 720px) {
+		.logo {
+			width: 60%;
 		}
 	}
 </style>

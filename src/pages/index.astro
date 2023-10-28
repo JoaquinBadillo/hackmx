@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import AiForm from '../components/form/index.tsx';
+import Main from '../components/landing/index.tsx';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -13,7 +13,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
-		<AiForm client:load />
+		<main class="formulario">
+			<Main client:load />
+		</main>
 		<Footer />
 	</body>
 </html>

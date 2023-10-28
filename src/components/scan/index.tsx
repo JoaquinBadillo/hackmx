@@ -15,6 +15,7 @@ export default function Form({setProduct, setError, setShowError}) {
 
 		let img;
 
+
 		try {
 			if (!webcamRef || !webcamRef.current || !webcamRef.current.getScreenshot)
 				throw new Error("Cámara no encontrada.");
@@ -22,39 +23,44 @@ export default function Form({setProduct, setError, setShowError}) {
 			const imageSrc = webcamRef.current.getScreenshot();
 			img = imageSrc.replace(/^data:image\/[a-z]+;base64,/, "");
 			setImgSrc(imageSrc);
+
+			const response = await fetch("/api/scan", {
+				method: "POST",
+				body: JSON.stringify({ img }),
+			});
+
+			if (!response?.ok) {
+				setError("Error al generar la receta.");
+				setShowError(true);
+				setLoading(false);
+				return;
+			  }
+	  
+			const data = await response.json();
+	
+			if (data?.producto)
+				setProduct(data.producto);
+	  
+			  setLoading(false);
+
 		} catch (error) {
 			setError(error.message);
+			setLoading(false);
 			return;
 		}
-		
-		// const response = await fetch("/api/scan", {
-		//   method: "POST",
-		//   body: {imagen: img},
-		// });
-
-		// if (!response.ok) {
-		//   setError("Error al generar la receta.");
-		//   setShowError(true);
-		//   setLoading(false);
-		//   return;
-		// }
-
-		// const data = await response.json();
-
-		// if (data?.product)
-		// 	setProduct(data.product);
-
-		setProduct("Pasta")
-
-		setLoading(false);
 	}
 
 	return (
-		<form onSubmit={submit}>
-			<div className="input-field">
-				Escanea un producto de La Moderna:
-				<Cam loading={loading} ref={webcamRef}/>
+		<div className="background">
+		<main className="formulario">
+			<h1>Generar una receta</h1>
+			<form onSubmit={submit}>
+				<div className="input-field">
+					Escanea un producto de La Moderna:
+					<Cam loading={loading} ref={webcamRef}/>
+				</div>
+			</form>
+		</main>
 			</div>
-		</form>
 	);
 }

@@ -13,9 +13,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
-		<main class="formulario">
-			<Main client:load />
-		</main>
+		<Main client:only />
 		<Footer />
 	</body>
 </html>

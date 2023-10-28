@@ -22,6 +22,7 @@
 body {
 	font-family: 'Poppins', 'Roboto', sans-serif;
 	margin: 0;
+	min-height: 90vh;
 	padding: 0;
 	text-align: left;
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
@@ -31,6 +32,12 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+	background-image: url("/img/background.jpg");
+}
+@media (max-width: 720px) {
+	body {
+		min-height: 95vh;
+	}
 }
 main {
 	width: 720px;
@@ -53,6 +60,7 @@ h1 {
 }
 h2 {
 	font-size: 2.3em;
+	margin: 0;
 }
 h3 {
 	font-size: 1.953em;
@@ -102,6 +110,20 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	max-width: 80%;
+	color: white;
+}
+@media (max-width: 720px) {
+	pre {
+		max-width: none;
+	}
+}
+pre {
+    white-space: pre-wrap;     
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;    
+    white-space: -o-pre-wrap;   
+    word-wrap: break-word;       
 }
 pre > code {
 	all: unset;
@@ -265,10 +287,6 @@ hr, .content-wrapper hr {
 	font-weight: bold;
 }
 
-.formulario {
-    background-image: url("/img/background.jpg");
-}
-
 video {
 	border-radius: 20px;
 }
@@ -291,4 +309,23 @@ video {
 	.recipe-input {
 		width: 90%;
 	}
+}
+.recipe {
+	padding: 1em;
+	z-index: 1;
+	background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 100%);
+}
+.recipe-title {
+	padding: 2em;
+	color: var(--accent);
+}
+.background {
+	width: 100%;
+	z-index: -1;
+	background-image: url("/img/background.jpg");
+	background-repeat: #000000;
+}
+.formulario {
+	z-index: 1;
+	background-color: #0000006d;
 }

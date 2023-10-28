@@ -50,13 +50,12 @@ def gpt(req: func.HttpRequest) -> func.HttpResponse:
         )
     
     preferencias = req_body.get('preferencias', '')
-    prompt = f"Crea una receta para un platillo {'que sea ' + preferencias if preferencias else ''}utilizando {producto}, para el mes de {month}"
+    prompt = f"Crea una receta corta para un platillo {'que sea ' + preferencias if preferencias else ''}utilizando {producto}, para el mes de {month}"
 
     try:  
         output = openai.ChatCompletion.create(
             model = "gpt-3.5-turbo-0613",
             messages = [{"role": "user", "content": prompt}]
-            max_tokens = 20,
         )
 
         output_text = output.choices[0].message.content
@@ -80,17 +79,7 @@ def gpt(req: func.HttpRequest) -> func.HttpResponse:
 @app.route(route="scan")
 def scan(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
-    if not api_key:
-        return func.HttpResponse(
-            json.dumps({
-                "message": 
-                    "El servidor no pudo establecer una conexión con terceros."
-            }),
-            mimetype="application/json",
-            status_code=500
-        )
 
-    openai.api_key = api_key
     req_body = req.get_json() 
     imagen = req_body.get('imagen', '')
 
@@ -102,11 +91,46 @@ def scan(req: func.HttpRequest) -> func.HttpResponse:
         )
     
     try:
-        with open("image.jpg", "wb") as fh:
-            fh.write(base64.urlsafe_b64decode(imagen))
+        # with open("image.jpg", "wb") as fh:
+        #     fh.write(base64.urlsafe_b64decode(imagen))
         
         return func.HttpResponse(
-            json.dumps({"output": "Imagen guardada"}), 
+            json.dumps({"producto": "Harina"}), 
+            mimetype="application/json",
+            status_code=200
+        )
+    
+    except:
+        return func.HttpResponse(
+            json.dumps({
+                "message": 
+                    "Error al procesar imagen"
+            }),
+            mimetype="application/json",
+            status_code=500
+        )
+
+
+@app.route(route="trends")
+def trends(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    req_body = req.get_json() 
+    imagen = req_body.get('imagen', '')
+
+    if not imagen:
+        return func.HttpResponse(
+            json.dumps( {"message": "Se necesita una imagen"}),
+            mimetype="application/json",
+            status_code=400
+        )
+    
+    try:
+        # with open("image.jpg", "wb") as fh:
+        #     fh.write(base64.urlsafe_b64decode(imagen))
+        
+        return func.HttpResponse(
+            json.dumps({"producto": "Harina"}), 
             mimetype="application/json",
             status_code=200
         )

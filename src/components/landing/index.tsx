@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { Error } from "../Notification.tsx";
 import Cam from "../cam/index.tsx";
 
-import Recipe from "../recipe/index.tsx";
+import RecipeForm from "../recipe-form/index.tsx";
 import Form from "../scan/index.tsx";
 
 export default function Main() {
@@ -14,11 +14,10 @@ export default function Main() {
 	return (
 		<>
 		<Error message={error} show={showError} setShow={setShowError}/>
-			<h1>Generar una receta</h1>
             {
                 product ? (
-                    <Recipe 
-                      product={product}
+                    <RecipeForm 
+                      producto={product}
                       setError={setError}
                       setShowError={setShowError}
                     />
